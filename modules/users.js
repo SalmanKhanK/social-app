@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
+const jwt=require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
        full_name :{
@@ -20,6 +21,11 @@ const UserSchema = new mongoose.Schema({
           required: true 
        }
 });
+UserSchema.methods.genAuthToken=function(){
+   const token=jwt.sign({_id:this._id},"jwtPrivatekey");
+   return token
+}
+
 function validateUser(user) {
    const validationSchema = Joi.object({
       full_name:Joi.string().min(4).max(55).required(),
