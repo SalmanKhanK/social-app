@@ -14,4 +14,8 @@ router.post("/create-user", async(req,res)=>{
     await user.save();
     res.status(200).send(_.pick(user,["_id","full_name","email"]));
 });
+router.post("/login",(req,res)=>{
+     console.log('login.....')
+});
+
 module.exports = router;
