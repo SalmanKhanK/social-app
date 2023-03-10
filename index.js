@@ -9,7 +9,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/SocialApp').then(()=>{
    console.log("error",err)
 });
 app.use(express.json());
-
+app.use(express.static('public'));
 app.use("/user",user);
 
 const port = 5000;
