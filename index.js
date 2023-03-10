@@ -8,8 +8,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/SocialApp').then(()=>{
 }).catch((err)=>{
    console.log("error",err)
 });
-app.use(express.json());
 
+console.log(`Cuurent env: ${app.get('env')}`);
+app.use(express.json());
+if(app.get('env') === 'development'){
+    console.log("current env is development.. test")
+}
 app.use("/user",user);
 
 const port = 5000;
