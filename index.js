@@ -12,5 +12,19 @@ app.use(express.json());
 
 app.use("/user",user);
 
+console.log("After");
+getUser((user)=>{
+    console.log('user:', user)
+});
+console.log("Before")
+
+
+function getUser(callback){
+    setTimeout(()=>{
+        console.log('getting the user...')
+        callback({user:'user github '})
+    },2000)
+}
+
 const port = 5000;
 app.listen(port,()=> console.log(`Listening on post${port}...`))
