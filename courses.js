@@ -65,4 +65,17 @@ const Course = mongoose.model('Course', courseSchema);
         .count()
     console.log(courses);
  }
- getTotalCourses();
+ //getTotalCourses();
+
+async function getPaginationCourses(){
+    const pageNum = 2;
+    const pageSize = 20;
+    // /api/courses?pageNum=1&pageSize=10   (in real world application)
+    const courses = await Course
+        .find({author: 'Salman'})
+        .skip((pageNum - 1) * pageSize)
+        .limit(pageSize)
+        .sort({name: 1})   // 1 for asc and -1 for desc
+        .count()
+    console.log(courses);
+ }
