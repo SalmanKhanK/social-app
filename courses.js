@@ -57,3 +57,12 @@ const Course = mongoose.model('Course', courseSchema);
 
     console.log(courses);
  }
+ async function getTotalCourses(){
+    const courses = await Course
+        .find({author: 'Salman'})
+        .limit(10)
+        .sort({name: 1})   // 1 for asc and -1 for desc
+        .count()
+    console.log(courses);
+ }
+ getTotalCourses();
