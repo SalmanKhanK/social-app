@@ -79,3 +79,32 @@ async function getPaginationCourses(){
         .count()
     console.log(courses);
  }
+
+ async function updateCourse(id){
+    const course = await Course.findById(id);
+    if(!course) return;
+    course.name= 'Asp.net';
+    course.author= 'khan bhai';
+    const result = await course.save();
+    console.log(result);
+ }
+ //updateCourse('64159911c248c40edda063e0');
+ 
+ //second approach
+
+ async function updateCourseDirectly(id){   // it will update data directly into the database
+    const course = await Course.findByIdAndUpdate(id,{
+        $set: {
+            name: 'TypeScript',
+            author: 'Noor'
+        }
+    },{new: true})
+    console.log(course);
+ }
+ updateCourseDirectly('64159911c248c40edda063e0');
+
+ async function removeCourse(id){
+    const course = await Course.findByIdAndRemove(id);
+    console.log(course);
+ }
+ removeCourse('64159911c248c40edda063e0');
