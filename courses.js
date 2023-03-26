@@ -44,5 +44,16 @@ const Course = mongoose.model('Course', courseSchema);
 
     console.log(courses);
  }
+ //getCourses();
+ async function getCoursesWithReqgularExp(){
+    const courses = await Course
+        .find({author: /^Imran/}) //starts with
+        .find({author: /Imran$/i}) // ends with (i) means case insensitive 
+        .find({author: /.*Imran.*/i}) // contains Imran
+        .limit(10)
+        .sort({name: 1})   // 1 for asc and -1 for desc
+        .select({name: -1, tags: 1, author: 1, isPublished: 1});  // select those properties that u want to display
 
- getCourses();
+
+    console.log(courses);
+ }
