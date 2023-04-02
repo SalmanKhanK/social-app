@@ -17,12 +17,17 @@ const courseSchema = new mongoose.Schema({
     tags: {
         type: Array,
         validate: {
-            validator: function(v){   // custom validator
-                return v && v.length > 0;
-            },
-            message: 'At least one tag',
+          validator: async function(v) {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                const result = v && v.length > 0;
+                resolve(result);
+              }, 4000);
+            });
+          },
+          message: 'A course should have at least one tag'
         }
-    },
+      },
     category: {
         type: String,
         required: true,
@@ -44,7 +49,7 @@ async function creatCourse(){
     const course = new Course({
         name: 'Books',
         author: 'Dawood',
-        tags:[],
+        tags:['book'],
         category: 'Javascript',
        // price: '3',
         isPublished: false
