@@ -4,8 +4,8 @@ const Joi = require("joi");
 const UserSchema = new mongoose.Schema({
        full_name :{
           type: String,
-          min:[4,'Must be at least 4 characters, got {VALUE}'],
-          max: 55,
+          minlength:[4,'Must be at least 4 characters, got {VALUE}'],
+          maxlength: 55,
           required: true,
        },
        email :{
