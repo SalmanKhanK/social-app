@@ -31,14 +31,18 @@ const courseSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['Angular', 'Javascript']
+        enum: ['angular', 'javascript'],
+        lowercase: true,
+        trim: true
     },
     date: {type: Date, default: Date.now},
     price: {
        type: Number,
        required: function(){return this.isPublished},
        min: 10,
-       max: 200
+       max: 200,
+       get: (v)=>Math.round(v),
+       set: (v)=>Math.round(v),
     },
     isPublished: Boolean
 });
@@ -47,12 +51,12 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function creatCourse(){
     const course = new Course({
-        name: 'Books',
+        name: 'Salman',
         author: 'Dawood',
         tags:['book'],
-        category: 'Javascript',
-       // price: '3',
-        isPublished: false
+        category: 'Angular',
+        price: 26.7,
+        isPublished: true
     })
     try{
       const result = await course.save();
