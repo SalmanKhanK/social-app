@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const user = require("./routers/user");
+const customer = require("./routers/customer");
 const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017/SocialApp').then(()=>{
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/SocialApp').then(()=>{
 app.use(express.json());
 
 app.use("/user",user);
+app.use('/api/customer', customer);
 
 const port = 5000;
 app.listen(port,()=> console.log(`Listening on post${port}...`))
