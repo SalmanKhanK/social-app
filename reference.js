@@ -45,5 +45,15 @@ async function createCourse(name, author){
    }
 }
 
-createCourse('Chemistry', '643b0609d012266594cc1789')
+//createCourse('Chemistry', '643b0609d012266594cc1789')
 //createAuthor('Waqas', 'Male')
+ 
+async function listCourses(){
+   const getMyCourses = await MyCourses
+      .find()
+      .populate('author', 'name -_id')
+      .select('author, name')
+      console.log(getMyCourses)
+}
+
+listCourses();
