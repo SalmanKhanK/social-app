@@ -21,9 +21,9 @@ router.post('/create-movie', async(req,res)=>{
     });
 
     try{
-        const result = await movie.save();
-        res.status(200).send(result);
-        console.log(result,'Result');
+        await movie.save();
+        res.status(200).send(movie);
+        console.log(movie,'Result');
     }catch(err){
         console.log(err, "Error")
     }

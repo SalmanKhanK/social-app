@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 const user = require("./routers/user");
 const category = require('./routers/category');
 const Fawn = require('fawn');
